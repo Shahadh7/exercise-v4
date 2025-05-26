@@ -1,21 +1,73 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
+      redirect: '/login',
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      path: '/login',
+      component: () => import('@/components/layouts/GuestLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Login',
+          component: () => import('@/views/auth/LoginView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/register',
+      component: () => import('@/components/layouts/GuestLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Register',
+          component: () => import('@/views/auth/RegisterView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/profile',
+      component: () => import('@/components/layouts/AuthenticatedLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Profile',
+          component: () => import('@/views/profile/ProfileView.vue'),
+        },
+        {
+          path: 'edit',
+          name: 'EditProfile',
+          component: () => import('@/views/profile/EditProfileView.vue'),
+        },
+        {
+          path: 'additional',
+          name: 'AdditionalDetails',
+          component: () => import('@/views/profile/AdditionalDetailsView.vue'),
+        },
+        {
+          path: 'spouse',
+          name: 'SpouseDetails',
+          component: () => import('@/views/profile/SpouseDetailsView.vue'),
+        },
+        {
+          path: 'preferences',
+          name: 'PersonalPreferences',
+          component: () => import('@/views/profile/PreferencesView.vue'),
+        },
+        {
+          path: '/home',
+          name: 'home',
+          component: () => import('@/views/HomeView.vue'),
+        },
+      ],
+    },
+    {
+      path: '/:catchAll(.*)',
+      redirect: '/login',
     },
   ],
 })
