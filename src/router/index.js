@@ -32,9 +32,10 @@ const router = createRouter({
     {
       path: '/profile',
       component: () => import('@/components/layouts/AuthenticatedLayout.vue'),
+      redirect: '/profile/basic-details',
       children: [
         {
-          path: '',
+          path: 'basic-details',
           name: 'Profile',
           component: () => import('@/views/profile/ProfileView.vue'),
         },
@@ -44,17 +45,17 @@ const router = createRouter({
           component: () => import('@/views/profile/EditProfileView.vue'),
         },
         {
-          path: 'additional',
+          path: 'additional-details',
           name: 'AdditionalDetails',
           component: () => import('@/views/profile/AdditionalDetailsView.vue'),
         },
         {
-          path: 'spouse',
+          path: 'spouse-details',
           name: 'SpouseDetails',
           component: () => import('@/views/profile/SpouseDetailsView.vue'),
         },
         {
-          path: 'preferences',
+          path: 'personal-preferences',
           name: 'PersonalPreferences',
           component: () => import('@/views/profile/PreferencesView.vue'),
         },

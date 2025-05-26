@@ -1,5 +1,5 @@
 <template>
-  <nav class="fixed w-full z-10 backdrop-blur-md rounded shadow">
+  <nav class="fixed z-10 w-full backdrop-blur-md rounded shadow">
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
@@ -33,8 +33,8 @@
       <hr />
       <a
         class="block font-medium hover:cursor-pointer my-3 mx-3"
-        :class="isActiveClass('/profile')"
-        @click="navigateTo('/profile')"
+        :class="isActiveClass('/profile/basic-details')"
+        @click="navigateTo('/profile/basic-details')"
         >My Profile</a
       >
       <hr />

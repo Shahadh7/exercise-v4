@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>Preferences</div>
 </template>
 <script setup></script>
 <style scoped></style>
