@@ -25,7 +25,7 @@ import SideBar from '../SideBar.vue'
 <style scoped>
 .main-bg {
   min-height: 100vh;
-  background-image: url('/bg-02.png');
+  background-image: url('/bg-02.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

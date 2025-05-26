@@ -19,7 +19,7 @@ import { RouterView } from 'vue-router'
 <style scoped>
 .main-bg {
   min-height: 100vh;
-  background-image: url('/bg-01.png');
+  background-image: url('/bg-01.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
