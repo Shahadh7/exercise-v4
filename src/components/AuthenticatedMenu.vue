@@ -45,9 +45,7 @@
         >Edit Profile</a
       >
       <hr />
-      <a class="block font-medium hover:cursor-pointer my-3 mx-3" @click="navigateTo('/login')"
-        >Logout</a
-      >
+      <a class="block font-medium hover:cursor-pointer my-3 mx-3" @click="logout">Logout</a>
       <hr />
     </div>
   </nav>
@@ -56,6 +54,8 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import Cookies from 'js-cookie'
+import axios from '@/axios'
 
 const openMenu = ref(false)
 const route = useRoute()
@@ -75,5 +75,21 @@ const isActiveClass = (path) => {
 const navigateTo = (path) => {
   router.push(path)
   openMenu.value = false
+}
+
+const removeAuthToken = () => {
+  Cookies.remove('auth_token')
+  Cookies.remove('user_data')
+  delete axios.defaults.headers.common['Authorization']
+}
+
+const logout = async () => {
+  try {
+    await axios.post('/api/logout')
+  } catch (error) {
+    console.error('Logout error:', error)
+  }
+  removeAuthToken()
+  router.push('/login')
 }
 </script>

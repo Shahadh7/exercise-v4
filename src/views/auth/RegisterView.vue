@@ -7,22 +7,29 @@
       </h1>
 
       <form @submit.prevent="handleRegister" class="space-y-5">
-        <div class="grid grid-cols-3 items-center">
+        <div class="grid grid-cols-3 items-center" :class="errors.user_id ? 'mb-2' : ''">
           <label for="userId" class="col-span-1 text-sm font-medium">User ID*</label>
           <input
             type="text"
             id="userId"
-            v-model="userId"
+            v-model="formData.user_id"
             class="col-span-2 px-3 py-2 border border-gray-300 rounded text-sm bg-white/90 focus:outline-none focus:ring-2 focus:ring-gray-500"
           />
         </div>
 
-        <div class="grid grid-cols-3 items-center relative">
+        <div class="grid grid-cols-3" v-if="errors.user_id">
+          <div class="col-span-1"></div>
+          <div class="col-span-2 text-sm">
+            <p class="text-red-500 m-0">{{ errors.user_id }}</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 items-center relative" :class="errors.password ? 'mb-2' : ''">
           <label for="password" class="col-span-1 text-sm font-medium">Password*</label>
           <input
             :type="showPassword ? 'text' : 'password'"
             id="password"
-            v-model="password"
+            v-model="formData.password"
             class="col-span-2 px-3 py-2 border border-gray-300 rounded text-sm bg-white/90 focus:outline-none focus:ring-2 focus:ring-gray-500"
           />
           <button
@@ -36,15 +43,24 @@
             />
           </button>
         </div>
+        <div class="grid grid-cols-3" v-if="errors.password">
+          <div class="col-span-1"></div>
+          <div class="col-span-2 text-sm">
+            <p class="text-red-500 m-0">{{ errors.password }}</p>
+          </div>
+        </div>
 
-        <div class="grid grid-cols-3 items-center relative">
+        <div
+          class="grid grid-cols-3 items-center relative"
+          :class="errors.password_confirmation ? 'mb-2' : ''"
+        >
           <label for="confirm-password" class="col-span-1 text-sm font-medium"
             >Confirm Password*</label
           >
           <input
             :type="showConfirmPassword ? 'text' : 'password'"
             id="confirm-password"
-            v-model="confirmPassword"
+            v-model="formData.password_confirmation"
             class="col-span-2 px-3 py-2 border border-gray-300 rounded text-sm bg-white/90 focus:outline-none focus:ring-2 focus:ring-gray-500"
           />
           <button
@@ -59,16 +75,10 @@
           </button>
         </div>
 
-        <div class="grid grid-cols-3 items-center">
+        <div class="grid grid-cols-3" v-if="errors.password_confirmation">
           <div class="col-span-1"></div>
-          <div class="col-span-2 flex items-center text-sm">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              v-model="rememberMe"
-              class="h-4 w-4 text-black border-gray-400 rounded mr-2"
-            />
-            <label for="rememberMe" class="text-black">Keep me logged in</label>
+          <div class="col-span-2 text-sm">
+            <p class="text-red-500 m-0">{{ errors.password_confirmation }}</p>
           </div>
         </div>
 
@@ -98,13 +108,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
+import { registerSchema } from '@/validations/validationSchemas'
+import axios from '@/axios'
+import { useRouter } from 'vue-router'
+import { showToast } from '@/stores/toast.js'
 
-const userId = ref('')
-const password = ref('')
-const confirmPassword = ref('')
+const formData = ref({
+  user_id: '',
+  password: '',
+  password_confirmation: '',
+  remember_me: false,
+})
 
-const rememberMe = ref(false)
+const errors = reactive({})
+const router = useRouter()
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
 
@@ -116,10 +134,35 @@ const toggleConfirmPassword = () => {
   showConfirmPassword.value = !showConfirmPassword.value
 }
 
-const handleRegister = () => {
-  console.log('UserID:', userId.value)
-  console.log('Password:', password.value)
-  console.log('Keep me logged in:', rememberMe.value)
+const handleRegister = async () => {
+  // Reset previous errors
+  Object.keys(errors).forEach((key) => delete errors[key])
+
+  try {
+    await registerSchema.validate(formData.value, { abortEarly: false })
+
+    await axios.get('/sanctum/csrf-cookie')
+
+    await axios.post('/api/register', {
+      user_id: formData.value.user_id,
+      password: formData.value.password,
+      password_confirmation: formData.value.password_confirmation,
+    })
+    showToast('Registration successful! You can now log in.', 'success')
+    router.push('/login')
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      err.inner.forEach((e) => {
+        errors[e.path] = e.message
+      })
+    } else if (err.response?.data?.errors) {
+      const serverErrors = err.response.data.errors
+      for (const key in serverErrors) {
+        errors[key] = serverErrors[key][0]
+      }
+    } else {
+      errors.message = err.response?.data?.message || 'Registration failed.'
+    }
+  }
 }
 </script>
-`
