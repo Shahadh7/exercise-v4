@@ -189,7 +189,6 @@ const handleLogin = async () => {
     const response = await axios.post('/api/login', formData.value)
 
     if (response.data.token) {
-      console.log('Login successful:', response.data)
       Cookies.set('auth_token', response.data.token, {
         expires: rememberMe.value ? 365 : 1, // 1 year or 1 day
         secure: import.meta.env.PROD,

@@ -135,7 +135,6 @@ const toggleConfirmPassword = () => {
 }
 
 const handleRegister = async () => {
-  // Reset previous errors
   Object.keys(errors).forEach((key) => delete errors[key])
 
   try {
