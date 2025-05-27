@@ -190,7 +190,7 @@ const handleLogin = async () => {
 
     if (response.data.token) {
       Cookies.set('auth_token', response.data.token, {
-        expires: rememberMe.value ? 365 : 1, // 1 year or 1 day
+        expires: formData.value.remember_me ? 365 : 1, // 1 year or 1 day
         secure: import.meta.env.PROD,
         sameSite: 'Strict',
       })
