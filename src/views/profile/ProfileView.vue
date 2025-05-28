@@ -75,9 +75,12 @@ const fetchProfileDetails = async () => {
         lastName: response.data.last_name,
         email: response.data.email_address,
       }
-      imageFile.value =
-        `${import.meta.env.VITE_API_URL}/storage/${response.data.profile_image}` || null
-      imageAvailable.value = !!imageFile.value
+      if (response.data.profile_image !== null) {
+        imageFile.value = `${import.meta.env.VITE_API_URL}/storage/${response.data.profile_image}`
+        imageAvailable.value = true
+      } else {
+        imageAvailable.value = false
+      }
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
