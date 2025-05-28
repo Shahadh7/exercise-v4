@@ -1,21 +1,36 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4 mb-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="Edit profile header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Profile</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <font-awesome-icon icon="fa-solid fa-caret-left" class="me-2" />
-        <router-link to="/profile/basic">Go back to My Profile</router-link>
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Go back to My Profile"
+      >
+        <font-awesome-icon
+          icon="fa-solid fa-caret-left"
+          class="me-2"
+          aria-hidden="true"
+          focusable="false"
+        />
+        <router-link to="/profile/basic" role="link">Go back to My Profile</router-link>
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4" role="form">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 lg:col-span-2 flex flex-col items-center">
             <div
               class="w-28 h-28 overflow-hidden mb-4 hover:cursor-pointer"
               @click="triggerFileInput"
+              role="button"
+              tabindex="0"
+              aria-label="Upload profile image"
             >
               <img
                 v-if="imageAvailable"
@@ -24,13 +39,19 @@
                 class="w-full h-full object-cover rounded-full"
               />
               <div v-else>
-                <font-awesome-icon icon="fa-solid fa-user" class="text-gray-400 text-9xl" />
+                <font-awesome-icon
+                  icon="fa-solid fa-user"
+                  class="text-gray-400 text-9xl"
+                  aria-hidden="true"
+                  focusable="false"
+                />
               </div>
             </div>
             <button
               class="underline underline-offset-4 hover:cursor-pointer"
               role="button"
               @click="triggerFileInput"
+              aria-label="Upload profile image"
             >
               Upload image
             </button>
@@ -40,6 +61,7 @@
               ref="fileInput"
               @change="handleImageUpload"
               class="hidden"
+              aria-label="Select profile image"
             />
           </div>
           <div class="col-span-12 lg:col-span-10 ps-10">
@@ -52,6 +74,7 @@
                 v-model="basicProfileDetails.salutation"
                 id="salutation"
                 name="salutation"
+                aria-required="true"
               >
                 <option value="" selected hidden disabled>Select Salutation</option>
                 <option v-for="(item, index) in salutationOptions" :key="index" :value="item.value">
@@ -70,6 +93,7 @@
                 placeholder="Enter First Name"
                 id="first-name"
                 name="first-name"
+                aria-required="true"
               />
               <p class="text-red-500 m-0" v-if="formErrors.firstName">{{ formErrors.firstName }}</p>
             </div>
@@ -98,6 +122,7 @@
                 placeholder="Enter Email Address"
                 id="email"
                 name="email"
+                aria-required="true"
               />
               <p class="text-red-500 m-0" v-if="formErrors.email || formErrors.email_address">
                 {{ formErrors.email || formErrors.email_address }}
@@ -112,6 +137,7 @@
               <button
                 @click="updateProfile"
                 class="w-1/2 flex gap-3 items-center justify-center bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                aria-label="Save and update profile"
               >
                 <Spinner class="inline" v-if="proccessing" />
                 SAVE & UPDATE
@@ -119,6 +145,7 @@
               <button
                 class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 @click="$router.push('/profile/basic')"
+                aria-label="Cancel and go back to profile"
               >
                 CANCEL
               </button>

@@ -1,16 +1,30 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="Personal Preferences section header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Personal <span class="font-bold">Preferences</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/personal-preferences/edit">Edit Presonal Preferences</router-link>
-        <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Edit Personal Preferences"
+      >
+        <router-link to="/profile/personal-preferences/edit" role="link"
+          >Edit Presonal Preferences</router-link
+        >
+        <font-awesome-icon
+          icon="fa-solid fa-pencil"
+          class="ms-2"
+          aria-hidden="true"
+          focusable="false"
+        />
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4" role="form">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
             <div class="mb-3">
@@ -22,6 +36,7 @@
                   :label="hobby"
                   class="mb-2 me-2"
                   chipClass="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm"
+                  role="listitem"
                 />
               </template>
               <template v-else>
@@ -37,6 +52,7 @@
                   :label="sport"
                   class="mb-2 me-2"
                   chipClass="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm"
+                  role="listitem"
                 />
               </template>
               <template v-else>
@@ -52,6 +68,7 @@
                   :label="genre"
                   class="mb-2 me-2"
                   chipClass="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm"
+                  role="listitem"
                 />
               </template>
               <template v-else>
@@ -67,6 +84,7 @@
                   :label="show"
                   class="mb-2 me-2"
                   chipClass="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-sm"
+                  role="listitem"
                 />
               </template>
               <template v-else>

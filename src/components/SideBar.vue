@@ -1,14 +1,22 @@
 <template>
-  <nav class="text-black p-4 h-auto">
-    <ul class="flex lg:flex-col lg:space-y-4 space-y-0 lg:w-56 w-full">
+  <nav class="text-black p-4 h-auto" role="navigation" aria-label="Profile Navigation Tabs">
+    <ul class="flex lg:flex-col lg:space-y-4 space-y-0 lg:w-56 w-full" role="list">
       <li
         v-for="(tab, index) in tabs"
         :key="index"
         @click="navigateTo(tab)"
         class="cursor-pointer border-b-2 pb-2 sm:pb-4 mx-2"
         :class="[isActiveClass(tab.path)]"
+        role="listitem"
+        :aria-label="`Go to ${tab.name}`"
+        tabindex="0"
       >
-        <font-awesome-icon :icon="tab.icon" class="me-2 text-2xl" />
+        <font-awesome-icon
+          :icon="tab.icon"
+          class="me-2 text-2xl"
+          aria-hidden="true"
+          focusable="false"
+        />
         {{ tab.name }}
       </li>
     </ul>

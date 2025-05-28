@@ -1,5 +1,9 @@
 <template>
-  <nav class="fixed w-full z-10 backdrop-blur-md rounded shadow">
+  <nav
+    class="fixed w-full z-10 backdrop-blur-md rounded shadow"
+    role="navigation"
+    aria-label="Guest Navigation"
+  >
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
@@ -8,6 +12,8 @@
             alt="logo"
             class="h-3/5 hover:cursor-pointer"
             @click="$router.push('/login')"
+            role="link"
+            aria-label="Go to Login"
           />
         </div>
 
@@ -16,12 +22,16 @@
             class="font-medium hover:cursor-pointer hover:font-extrabold hover:underline underline-offset-4"
             :class="isActiveClass('/login')"
             @click="navigateTo('/login')"
+            role="link"
+            aria-label="Go to Login"
             >Login</a
           >
           <a
             class="font-medium hover:cursor-pointer hover:font-extrabold hover:underline underline-offset-4"
             :class="isActiveClass('/register')"
             @click="navigateTo('/register')"
+            role="link"
+            aria-label="Go to Register"
             >Register</a
           >
         </div>
@@ -30,6 +40,9 @@
           <button
             @click="toggleMenu"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 focus:outline-none"
+            :aria-expanded="openMenu.toString()"
+            aria-controls="mobile-menu"
+            aria-label="Toggle mobile menu"
           >
             <font-awesome-icon :icon="openMenu ? 'times' : 'bars'" class="text-2xl" />
           </button>
@@ -39,12 +52,15 @@
 
     <div
       v-if="openMenu"
+      id="mobile-menu"
       class="backdrop-blur-3xl sm:hidden px-2 pt-2 pb-3 space-y-1 h-52 mx-2 rounded-2xl"
     >
       <a
         class="block font-medium hover:cursor-pointer hover:font-extrabold underline-offset-4 my-3"
         :class="isActiveClass('/register')"
         @click="navigateTo('/register')"
+        role="link"
+        aria-label="Go to Register"
         >Register</a
       >
 
@@ -52,6 +68,8 @@
         class="block font-medium hover:cursor-pointer hover:font-extrabold underline-offset-4"
         :class="isActiveClass('/login')"
         @click="navigateTo('/login')"
+        role="link"
+        aria-label="Go to Login"
         >Login</a
       >
     </div>

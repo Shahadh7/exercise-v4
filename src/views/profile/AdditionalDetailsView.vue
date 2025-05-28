@@ -1,16 +1,32 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4 mb-4">
-    <div class="col-span-12 gap-4 items-baseline block lg:flex">
+    <div
+      class="col-span-12 gap-4 items-baseline block lg:flex"
+      role="region"
+      aria-label="Additional details section header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Additional <span class="font-bold">Details</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Edit additional details"
+      >
         <router-link to="/profile/additional-details/edit">Edit Additional Details</router-link>
-        <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
+        <font-awesome-icon
+          icon="fa-solid fa-pencil"
+          class="ms-2"
+          aria-hidden="true"
+          focusable="false"
+        />
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div
+        class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4"
+        role="region"
+        aria-label="User's additional information"
+      >
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
             <div class="mb-3">

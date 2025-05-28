@@ -1,16 +1,29 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="Spouse profile header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Spouse <span class="font-bold">Details</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/spouse-details/edit">Edit Spouse Details</router-link>
-        <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
+      <button class="underline text-pink-800 hover:text-blue-900" aria-label="Edit spouse details">
+        <router-link to="/profile/spouse-details/edit" role="link">Edit Spouse Details</router-link>
+        <font-awesome-icon
+          icon="fa-solid fa-pencil"
+          class="ms-2"
+          aria-hidden="true"
+          focusable="false"
+        />
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div
+        class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4"
+        role="region"
+        aria-label="Spouse information section"
+      >
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
             <div class="mb-3">

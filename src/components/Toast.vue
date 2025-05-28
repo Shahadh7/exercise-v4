@@ -6,6 +6,9 @@
         'fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 px-4 py-3 rounded shadow-lg text-white transition-all duration-300',
         toastClass,
       ]"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
     >
       {{ message }}
     </div>

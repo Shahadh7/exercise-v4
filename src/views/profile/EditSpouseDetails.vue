@@ -1,16 +1,30 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="Edit spouse details section header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Spouse Details</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <font-awesome-icon icon="fa-solid fa-caret-left" class="me-2" />
-        <router-link to="/profile/additional-details">Go back to Spouse Details</router-link>
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Go back to Spouse Details"
+      >
+        <font-awesome-icon
+          icon="fa-solid fa-caret-left"
+          class="me-2"
+          aria-hidden="true"
+          focusable="false"
+        />
+        <router-link to="/profile/additional-details" role="link"
+          >Go back to Spouse Details</router-link
+        >
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4" role="form">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
             <div class="mb-4">
@@ -20,6 +34,7 @@
                 v-model="spouseDetails.salutation"
                 id="salutation"
                 name="salutation"
+                aria-label="Select Salutation"
               >
                 <option value="" selected hidden disabled>Select Salutation</option>
                 <option v-for="(item, index) in salutationOptions" :key="index" :value="item.value">
@@ -36,6 +51,7 @@
                 placeholder="Enter First Name"
                 id="firstName"
                 name="firstName"
+                aria-label="First Name"
               />
               <p class="text-red-500 m-0" v-if="formErrors.first_name">
                 {{ formErrors.first_name }}
@@ -50,6 +66,7 @@
                 placeholder="Enter last Name"
                 id="lastName"
                 name="lastName"
+                aria-label="Last Name"
               />
               <p class="text-red-500 m-0" v-if="formErrors.first_name">
                 {{ formErrors.last_name }}
@@ -60,6 +77,7 @@
                 <button
                   @click="updateSpouseDetails"
                   class="w-1/2 flex gap-3 items-center justify-center bg-black text-white text-sm font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Save and update spouse details"
                 >
                   <Spinner class="inline" v-if="proccessing" />
                   SAVE & UPDATE
@@ -67,6 +85,7 @@
                 <button
                   class="w-1/2 bg-gray-200 text-black text-sm font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/spouse-details')"
+                  aria-label="Cancel spouse details update and go back"
                 >
                   CANCEL
                 </button>

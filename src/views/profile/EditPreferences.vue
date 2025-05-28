@@ -1,16 +1,30 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="Edit personal preferences section header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Personal Preference</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <font-awesome-icon icon="fa-solid fa-caret-left" class="me-2" />
-        <router-link to="/profile/personal-preferences">Go back to Personal Preference</router-link>
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Go back to personal preferences"
+      >
+        <font-awesome-icon
+          icon="fa-solid fa-caret-left"
+          class="me-2"
+          aria-hidden="true"
+          focusable="false"
+        />
+        <router-link to="/profile/personal-preferences" role="link"
+          >Go back to Personal Preference</router-link
+        >
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4" role="form">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 lg:col-span-10">
             <div class="mb-4">
@@ -21,6 +35,7 @@
                   v-model="preferences.hobbies"
                   placeholder="Type and press enter or click + button"
                   @update:model-value="preferences.hobbies = $event"
+                  aria-label="Hobbies and interests input"
                 />
               </div>
               <p class="text-red-500 m-0" v-if="formErrors.hobbies">{{ formErrors.hobbies }}</p>
@@ -33,6 +48,7 @@
                   v-model="preferences.favouriteSports"
                   placeholder="Type and press enter or click + button"
                   @update:model-value="preferences.favouriteSports = $event"
+                  aria-label="Favourite sports input"
                 />
               </div>
 
@@ -48,6 +64,7 @@
                   v-model="preferences.preferredMusicGenre"
                   placeholder="Type and press enter or click + button"
                   @update:model-value="preferences.preferredMusicGenre = $event"
+                  aria-label="Preferred music genres input"
                 />
               </div>
 
@@ -63,6 +80,7 @@
                   v-model="preferences.preferredMoviesTv"
                   placeholder="Type and press enter or click + button"
                   @update:model-value="preferences.preferredMoviesTv = $event"
+                  aria-label="Preferred movie/TV shows input"
                 />
               </div>
 
@@ -75,6 +93,7 @@
                 <button
                   @click="updatePreferences"
                   class="w-1/2 flex gap-3 items-center justify-center bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Save and update personal preferences"
                 >
                   <Spinner class="inline" v-if="proccessing" />
                   SAVE & UPDATE
@@ -82,6 +101,7 @@
                 <button
                   class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/personal-preferences')"
+                  aria-label="Cancel and go back to personal preferences"
                 >
                   CANCEL
                 </button>

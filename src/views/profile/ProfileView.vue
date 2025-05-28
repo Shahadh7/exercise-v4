@@ -1,19 +1,35 @@
 <template>
   <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
-    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+    <div
+      class="col-span-12 block lg:flex gap-4 items-baseline"
+      role="region"
+      aria-label="My profile header"
+    >
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         My <span class="font-bold">Profile</span>
       </h2>
-      <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/basic-details/edit">Edit Profile</router-link>
-        <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
+      <button
+        class="underline text-pink-800 hover:text-blue-900"
+        aria-label="Edit basic profile details"
+      >
+        <router-link to="/profile/basic-details/edit" role="link">Edit Profile</router-link>
+        <font-awesome-icon
+          icon="fa-solid fa-pencil"
+          class="ms-2"
+          aria-hidden="true"
+          focusable="false"
+        />
       </button>
     </div>
     <div class="col-span-12 mt-5">
-      <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
+      <div
+        class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4"
+        role="region"
+        aria-label="Profile details"
+      >
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-2 flex flex-col items-center">
-            <div class="w-28 h-28 overflow-hidden mb-4">
+            <div class="w-28 h-28 overflow-hidden mb-4" aria-label="Profile image">
               <img
                 v-if="imageAvailable"
                 :src="imageFile"
@@ -21,7 +37,12 @@
                 class="w-full h-full object-cover rounded-full"
               />
               <div v-else>
-                <font-awesome-icon icon="fa-solid fa-user" class="text-gray-400 text-9xl" />
+                <font-awesome-icon
+                  icon="fa-solid fa-user"
+                  class="text-gray-400 text-9xl"
+                  aria-hidden="true"
+                  focusable="false"
+                />
               </div>
             </div>
           </div>

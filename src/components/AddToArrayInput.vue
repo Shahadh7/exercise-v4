@@ -1,6 +1,7 @@
 <template>
   <div class="w-full">
     <div class="relative">
+      <label :for="name" class="sr-only">{{ placeholder }}</label>
       <input
         v-model="newItem"
         @keyup.enter="addItem"
@@ -8,11 +9,14 @@
         :placeholder="placeholder"
         class="px-3 py-2 pr-10 w-full rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
         :name="name"
+        :id="name"
+        :aria-label="placeholder"
       />
       <button
         type="button"
         @click="addItem"
         class="absolute top-1/2 -translate-y-1/2 right-3 px-3 py-1 bg-black text-white rounded-lg hover:bg-gray-800 text-md"
+        :aria-label="`Add item: ${newItem}`"
       >
         +
       </button>
@@ -25,7 +29,11 @@
         class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm flex items-center"
       >
         {{ item }}
-        <button @click="removeItem(index)" class="ml-2 text-red-500 hover:text-red-700">
+        <button
+          @click="removeItem(index)"
+          class="ml-2 text-red-500 hover:text-red-700"
+          :aria-label="`Remove item: ${item}`"
+        >
           &times;
         </button>
       </span>

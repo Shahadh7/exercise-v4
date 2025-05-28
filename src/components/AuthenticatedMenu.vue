@@ -1,5 +1,9 @@
 <template>
-  <nav class="fixed z-10 w-full backdrop-blur-md rounded shadow">
+  <nav
+    class="fixed z-10 w-full backdrop-blur-md rounded shadow"
+    role="navigation"
+    aria-label="Main Navigation"
+  >
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between h-16">
         <div class="flex items-center">
@@ -8,6 +12,8 @@
             alt="logo"
             class="h-3/5 hover:cursor-pointer"
             @click="$router.push('/login')"
+            role="link"
+            aria-label="Go to Login"
           />
         </div>
 
@@ -15,6 +21,8 @@
           <button
             @click="toggleMenu"
             class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 focus:outline-none"
+            aria-controls="mobile-menu"
+            aria-label="Toggle navigation menu"
           >
             <font-awesome-icon :icon="openMenu ? 'times' : 'bars'" class="text-2xl" />
           </button>
@@ -28,6 +36,8 @@
         class="block font-medium hover:cursor-pointer hover:font-extrabold my-3 mx-3"
         :class="isActiveClass('/home')"
         @click="navigateTo('/home')"
+        role="link"
+        aria-label="Go to Home"
         >Home</a
       >
       <hr />
@@ -35,6 +45,8 @@
         class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
         :class="isActiveClass('/profile/basic-details')"
         @click="navigateTo('/profile/basic-details')"
+        role="link"
+        aria-label="Go to My Profile"
         >My Profile</a
       >
       <hr />
@@ -42,12 +54,16 @@
         class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
         :class="isActiveClass('/profile/edit')"
         @click="navigateTo('/profile/edit')"
+        role="link"
+        aria-label="Go to Edit Profile"
         >Edit Profile</a
       >
       <hr />
       <a
         class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
         @click="logout"
+        role="link"
+        aria-label="Logout of your account"
         >Logout</a
       >
       <hr />
