@@ -51,6 +51,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
+import { showToast } from '@/stores/toast'
 
 const basicProfileDetails = ref({
   salutation: '',
@@ -86,7 +87,7 @@ const fetchProfileDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Profile details not found: Please add basic details.')
     } else {
-      console.error('Error fetching profile details:', err)
+      showToast(err.response?.data?.message || 'Failed to fetch profile details.', 'error')
     }
   }
 }

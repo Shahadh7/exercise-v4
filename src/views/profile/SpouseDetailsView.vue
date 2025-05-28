@@ -34,6 +34,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
+import { showToast } from '@/stores/toast'
 
 const spouseDetails = ref({
   salutation: '',
@@ -57,7 +58,10 @@ const fetchSpouseDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Spouse details not found: Please add spouse details.')
     } else {
-      console.error('Error fetching spouse details:', err)
+      showToast({
+        type: 'error',
+        message: 'Failed to fetch spouse details. Please try again later.',
+      })
     }
   }
 }

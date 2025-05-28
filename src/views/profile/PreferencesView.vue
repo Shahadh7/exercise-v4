@@ -83,6 +83,7 @@
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
 import Chip from '@/components/Chip.vue'
+import { showToast } from '@/stores/toast'
 
 const preferences = ref({
   hobbies: [],
@@ -108,7 +109,10 @@ const fetchPreferences = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Preferences details not found: Please add preferences.')
     } else {
-      console.error('Error fetching preferences details:', err)
+      showToast({
+        message: 'Failed to fetch preferences. Please try again later.',
+        type: 'error',
+      })
     }
   }
 }

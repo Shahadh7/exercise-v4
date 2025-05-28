@@ -176,7 +176,7 @@ const fetchProfileDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Profile details not found: Please create a profile first.')
     } else {
-      console.error('Error fetching profile details:', err)
+      showToast(err.response?.data?.message || 'Failed to fetch profile details.', 'error')
     }
   }
 }
@@ -204,8 +204,6 @@ const handleImageUpload = (event) => {
     }
     reader.readAsDataURL(file)
   }
-
-  console.log('Selected file:', file)
   formErrors.value.profileImage = ''
 }
 
@@ -230,7 +228,6 @@ const updateProfile = async () => {
     showToast(response.data.message, 'success')
     router.push('/profile/basic')
   } catch (err) {
-    console.error('Error updating profile:', err)
     if (err.name === 'ValidationError') {
       err.inner.forEach((e) => {
         formErrors.value[e.path] = e.message
@@ -257,7 +254,7 @@ const uploadProfileImage = async () => {
       },
     })
   } catch (error) {
-    console.error('Error uploading image:', error)
+    showToast('Failed to upload profile image.', 'error')
   }
 }
 

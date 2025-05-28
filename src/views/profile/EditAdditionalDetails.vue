@@ -133,8 +133,6 @@
                   CANCEL
                 </button>
               </div>
-
-              {{ additionalDetails }}
             </div>
           </div>
         </div>
@@ -188,7 +186,7 @@ const fetchAdditionalDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Additional details not found: Please create a additional first.')
     } else {
-      console.error('Error fetching additional details:', err)
+      showToast(err.response?.data?.message || 'Failed to fetch additional details.', 'error')
     }
   }
 }
@@ -216,7 +214,6 @@ const updateProfile = async () => {
     }
     router.push('/profile/additional-details')
   } catch (err) {
-    console.error('Error updating profile:', err)
     if (err.name === 'ValidationError') {
       err.inner.forEach((e) => {
         formErrors.value[e.path] = e.message

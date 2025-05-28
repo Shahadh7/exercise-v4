@@ -120,7 +120,7 @@ const fetchPreferences = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Profile details not found: Please create a profile first.')
     } else {
-      console.error('Error fetching profile details:', err)
+      showToast(err.response?.data?.message || 'Failed to fetch preferences.', 'error')
     }
   }
 }

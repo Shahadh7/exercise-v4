@@ -125,8 +125,6 @@ router.beforeEach(async (to, from, next) => {
       return next()
     }
   } catch (err) {
-    console.log('Token validation failed:', err.response?.status)
-
     Cookies.remove('auth_token')
     Cookies.remove('user_data')
     delete axios.defaults.headers.common['Authorization']

@@ -46,6 +46,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
+import { showToast } from '@/stores/toast'
 
 const additionalDetails = ref({
   homeAddress: '',
@@ -75,7 +76,7 @@ const fetchAdditionalDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Additional details not found: Please add additional details.')
     } else {
-      console.error('Error fetching additional details:', err)
+      showToast('Error fetching additional details: ' + err.message, 'error')
     }
   }
 }

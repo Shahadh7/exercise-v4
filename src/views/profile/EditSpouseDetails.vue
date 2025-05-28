@@ -115,7 +115,7 @@ const fetchSpouseDetails = async () => {
     if (err.response && err.response.status === 404) {
       console.error('Spouse details not found: Please create a spouse first.')
     } else {
-      console.error('Error fetching spouse details:', err)
+      showToast(err.response?.data?.message || 'Failed to fetch spouse details.', 'error')
     }
   }
 }
@@ -133,7 +133,6 @@ const updateSpouseDetails = async () => {
     showToast(response.data.message, 'success')
     router.push('/profile/spouse-details')
   } catch (err) {
-    console.error(err)
     if (err.response?.data?.errors) {
       const serverErrors = err.response.data.errors
       for (const key in serverErrors) {

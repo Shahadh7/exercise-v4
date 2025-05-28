@@ -60,6 +60,7 @@ import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import Cookies from 'js-cookie'
 import axios from '@/axios'
+import { showToast } from '@/stores/toast'
 
 const openMenu = ref(false)
 const route = useRoute()
@@ -91,7 +92,10 @@ const logout = async () => {
   try {
     await axios.post('/api/logout')
   } catch (error) {
-    console.error('Logout error:', error)
+    showToast({
+      message: 'Failed to logout. Please try again.',
+      type: 'error',
+    })
   }
   removeAuthToken()
   router.push('/login')

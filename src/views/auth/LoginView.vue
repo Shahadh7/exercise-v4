@@ -148,7 +148,7 @@ const getCsrfToken = async () => {
   try {
     await axios.get('/sanctum/csrf-cookie')
   } catch (error) {
-    console.error('Failed to get CSRF token:', error)
+    showToast('Failed to get CSRF token. Please try again.', 'error')
   }
 }
 
@@ -199,7 +199,6 @@ const handleLogin = async () => {
       router.push('/profile')
     }
   } catch (err) {
-    console.error('Login error:', err)
     if (err.name === 'ValidationError') {
       err.inner.forEach((e) => {
         formErrors[e.path] = e.message
@@ -210,7 +209,7 @@ const handleLogin = async () => {
         formErrors[key] = serverErrors[key][0]
       }
     } else {
-      formErrors.message = err.response?.data?.message || 'Login failed.'
+      showToast(err.response?.data?.message || 'Login failed.', 'error')
     }
   } finally {
     loading.value = false
