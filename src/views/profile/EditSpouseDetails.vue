@@ -68,7 +68,7 @@
                   class="w-1/2 bg-gray-200 text-black text-sm font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/spouse-details')"
                 >
-                  Cancel
+                  CANCEL
                 </button>
               </div>
             </div>

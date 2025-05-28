@@ -15,50 +15,57 @@
           <div class="col-span-12 lg:col-span-10">
             <div class="mb-4">
               <label for="hobbies" class="block mb-2 font-bold">Hobbies and interests</label>
-              <AddToArrayInput
-                name="hobbies"
-                v-model="preferences.hobbies"
-                placeholder="Type and press enter or click + button"
-                width="w-full lg:w-3/6"
-                @update:model-value="preferences.hobbies = $event"
-              />
+              <div class="w-full lg:w-3/6">
+                <AddToArrayInput
+                  name="hobbies"
+                  v-model="preferences.hobbies"
+                  placeholder="Type and press enter or click + button"
+                  @update:model-value="preferences.hobbies = $event"
+                />
+              </div>
               <p class="text-red-500 m-0" v-if="formErrors.hobbies">{{ formErrors.hobbies }}</p>
             </div>
             <div class="mb-4">
               <label for="sports" class="block mb-2 font-bold">Favourite sport(s)</label>
-              <AddToArrayInput
-                name="sports"
-                v-model="preferences.favouriteSports"
-                placeholder="Type and press enter or click + button"
-                width="w-full lg:w-3/6"
-                @update:model-value="preferences.favouriteSports = $event"
-              />
+              <div class="w-full lg:w-3/6">
+                <AddToArrayInput
+                  name="sports"
+                  v-model="preferences.favouriteSports"
+                  placeholder="Type and press enter or click + button"
+                  @update:model-value="preferences.favouriteSports = $event"
+                />
+              </div>
+
               <p class="text-red-500 m-0" v-if="formErrors.favorite_sports">
                 {{ formErrors.favorite_sports }}
               </p>
             </div>
             <div class="mb-4">
               <label for="music-pref" class="block mb-2 font-bold">Preferred music genre(s)</label>
-              <AddToArrayInput
-                name="music-pref"
-                v-model="preferences.preferredMusicGenre"
-                placeholder="Type and press enter or click + button"
-                width="w-full lg:w-3/6"
-                @update:model-value="preferences.preferredMusicGenre = $event"
-              />
+              <div class="w-full lg:w-3/6">
+                <AddToArrayInput
+                  name="music-pref"
+                  v-model="preferences.preferredMusicGenre"
+                  placeholder="Type and press enter or click + button"
+                  @update:model-value="preferences.preferredMusicGenre = $event"
+                />
+              </div>
+
               <p class="text-red-500 m-0" v-if="formErrors.preferred_music_genre">
                 {{ formErrors.preferred_music_genre }}
               </p>
             </div>
             <div class="mb-4">
               <label for="show-pref" class="block mb-2 font-bold">Preferred movie/TV show(s)</label>
-              <AddToArrayInput
-                name="show-pref"
-                v-model="preferences.preferredMoviesTv"
-                placeholder="Type and press enter or click + button"
-                width="w-full lg:w-3/6"
-                @update:model-value="preferences.preferredMoviesTv = $event"
-              />
+              <div class="w-full lg:w-3/6">
+                <AddToArrayInput
+                  name="show-pref"
+                  v-model="preferences.preferredMoviesTv"
+                  placeholder="Type and press enter or click + button"
+                  @update:model-value="preferences.preferredMoviesTv = $event"
+                />
+              </div>
+
               <p class="text-red-500 m-0" v-if="formErrors.preferred_movie_tv_show">
                 {{ formErrors.preferred_movie_tv_show }}
               </p>
@@ -76,7 +83,7 @@
                   class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/personal-preferences')"
                 >
-                  Cancel
+                  CANCEL
                 </button>
               </div>
             </div>
