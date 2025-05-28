@@ -88,7 +88,7 @@
             <button
               @click="handleLogin"
               :disabled="loading"
-              class="w-2/5 flex gap-3 text-sm items-center justify-center bg-black text-white font-semibold py-2 rounded hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+              class="w-2/5 flex gap-3 text-xs items-center justify-center bg-black text-white font-semibold py-2 rounded hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
             >
               <Spinner class="inline" v-if="proccessing" />
               LOGIN

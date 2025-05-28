@@ -87,7 +87,7 @@
           <div class="col-span-2">
             <button
               type="submit"
-              class="w-2/5 flex gap-3 items-center justify-center bg-black text-sm text-white font-semibold py-2 rounded hover:bg-gray-800"
+              class="w-2/5 flex gap-3 items-center justify-center bg-black text-xs text-white font-semibold py-2 rounded hover:bg-gray-800"
             >
               <Spinner class="inline" v-if="proccessing" />
               REGISTER
