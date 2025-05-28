@@ -6,6 +6,7 @@
       </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
         <router-link to="/profile/basic-details/edit">Edit Profile</router-link>
+        <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
       </button>
     </div>
     <div class="col-span-12 mt-5">

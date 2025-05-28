@@ -5,6 +5,7 @@
         Edit <span class="font-bold">Additional Details</span>
       </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
+        <font-awesome-icon icon="fa-solid fa-caret-left" class="me-2" />
         <router-link to="/profile/additional-details">Go back to Additional Details</router-link>
       </button>
     </div>

@@ -2,10 +2,11 @@
   <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
-        Edit <span class="font-bold">Profile</span>
+        Edit <span class="font-bold">Spouse Details</span>
       </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/additional-details">Go back to Additional Details</router-link>
+        <font-awesome-icon icon="fa-solid fa-caret-left" class="me-2" />
+        <router-link to="/profile/additional-details">Go back to Spouse Details</router-link>
       </button>
     </div>
     <div class="col-span-12 mt-5">

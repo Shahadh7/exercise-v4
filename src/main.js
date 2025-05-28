@@ -17,6 +17,8 @@ import {
   faCog,
   faAnglesLeft,
   faAngleRight,
+  faCaretLeft,
+  faPencil,
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
@@ -31,6 +33,8 @@ library.add(
   faCog,
   faAnglesLeft,
   faAngleRight,
+  faCaretLeft,
+  faPencil,
 )
 
 const app = createApp(App)
