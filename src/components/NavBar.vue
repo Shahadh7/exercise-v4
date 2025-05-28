@@ -13,13 +13,13 @@
 
         <div class="hidden sm:flex sm:space-x-8 sm:items-center">
           <a
-            class="font-medium hover:cursor-pointer hover:underline underline-offset-4"
+            class="font-medium hover:cursor-pointer hover:font-extrabold hover:underline underline-offset-4"
             :class="isActiveClass('/login')"
             @click="navigateTo('/login')"
             >Login</a
           >
           <a
-            class="font-medium hover:cursor-pointer hover:underline underline-offset-4"
+            class="font-medium hover:cursor-pointer hover:font-extrabold hover:underline underline-offset-4"
             :class="isActiveClass('/register')"
             @click="navigateTo('/register')"
             >Register</a
@@ -42,13 +42,14 @@
       class="backdrop-blur-3xl sm:hidden px-2 pt-2 pb-3 space-y-1 h-52 mx-2 rounded-2xl"
     >
       <a
-        class="block font-medium hover:cursor-pointer underline-offset-4 my-3"
+        class="block font-medium hover:cursor-pointer hover:font-extrabold underline-offset-4 my-3"
         :class="isActiveClass('/register')"
         @click="navigateTo('/register')"
         >Register</a
       >
+
       <a
-        class="block font-medium hover:cursor-pointer underline-offset-4"
+        class="block font-medium hover:cursor-pointer hover:font-extrabold underline-offset-4"
         :class="isActiveClass('/login')"
         @click="navigateTo('/login')"
         >Login</a

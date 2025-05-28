@@ -25,27 +25,31 @@
     <div v-if="openMenu" class="px-2 py-6 space-y-1 h-64 mx-2 rounded-2xl">
       <hr />
       <a
-        class="block font-medium hover:cursor-pointer my-3 mx-3"
+        class="block font-medium hover:cursor-pointer hover:font-extrabold my-3 mx-3"
         :class="isActiveClass('/home')"
         @click="navigateTo('/home')"
         >Home</a
       >
       <hr />
       <a
-        class="block font-medium hover:cursor-pointer my-3 mx-3"
+        class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
         :class="isActiveClass('/profile/basic-details')"
         @click="navigateTo('/profile/basic-details')"
         >My Profile</a
       >
       <hr />
       <a
-        class="block font-medium hover:cursor-pointer my-3 mx-3"
+        class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
         :class="isActiveClass('/profile/edit')"
         @click="navigateTo('/profile/edit')"
         >Edit Profile</a
       >
       <hr />
-      <a class="block font-medium hover:cursor-pointer my-3 mx-3" @click="logout">Logout</a>
+      <a
+        class="block font-medium hover:font-extrabold hover:cursor-pointer my-3 mx-3"
+        @click="logout"
+        >Logout</a
+      >
       <hr />
     </div>
   </nav>
