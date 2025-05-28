@@ -23,7 +23,9 @@ const router = useRouter()
 const route = useRoute()
 
 const isActiveClass = (path) => {
-  return route.path === path ? 'font-bold md:border-b-4 md:border-black-300' : 'text-gray-600'
+  return route.path.startsWith(path)
+    ? 'font-bold md:border-b-4 md:border-black-300'
+    : 'text-gray-600'
 }
 
 const tabs = [

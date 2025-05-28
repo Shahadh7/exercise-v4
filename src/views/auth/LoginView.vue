@@ -123,6 +123,7 @@ import axios from '@/axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'vue-router'
 import { loginSchema } from '@/validations/validationSchemas'
+import { showToast } from '@/stores/toast.js'
 
 const router = useRouter()
 
@@ -194,7 +195,7 @@ const handleLogin = async () => {
         secure: import.meta.env.PROD,
         sameSite: 'Strict',
       })
-
+      showToast('Logged in successfully.', 'success')
       router.push('/profile')
     }
   } catch (err) {

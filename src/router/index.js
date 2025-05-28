@@ -56,16 +56,34 @@ const router = createRouter({
           component: () => import('@/views/profile/AdditionalDetailsView.vue'),
         },
         {
+          path: 'additional-details/edit',
+          name: 'EditAdditionalDetails',
+          meta: { requiresAuth: true },
+          component: () => import('@/views/profile/EditAdditionalDetails.vue'),
+        },
+        {
           path: 'spouse-details',
           name: 'SpouseDetails',
           meta: { requiresAuth: true },
           component: () => import('@/views/profile/SpouseDetailsView.vue'),
         },
         {
+          path: 'spouse-details/edit',
+          name: 'EditSpouseDetails',
+          meta: { requiresAuth: true },
+          component: () => import('@/views/profile/EditSpouseDetails.vue'),
+        },
+        {
           path: 'personal-preferences',
           name: 'PersonalPreferences',
           meta: { requiresAuth: true },
           component: () => import('@/views/profile/PreferencesView.vue'),
+        },
+        {
+          path: 'personal-preferences/edit',
+          name: 'EditPreferences',
+          meta: { requiresAuth: true },
+          component: () => import('@/views/profile/EditPreferences.vue'),
         },
         {
           path: '/home',
