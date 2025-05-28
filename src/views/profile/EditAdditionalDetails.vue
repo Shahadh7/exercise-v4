@@ -1,7 +1,9 @@
 <template>
   <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
-    <div class="col-span-12 flex gap-4 items-baseline">
-      <h2 class="text-3xl md:text-4xl font-light">Edit <span class="font-bold">Profile</span></h2>
+    <div class="col-span-12 gap-4 items-baseline block lg:flex">
+      <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
+        Edit <span class="font-bold">Additional Details</span>
+      </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
         <router-link to="/profile/additional-details">Go back to Additional Details</router-link>
       </button>
@@ -115,24 +117,21 @@
                 <label for="married">Married</label>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-12 sm:col-span-2"></div>
-          <div class="col-span-12 sm:col-span-10 ps-10 mt-4">
-            <div class="w-3/6 flex gap-4">
-              <button
-                @click="updateProfile"
-                class="w-1/2 bg-black text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
-              >
-                SAVE & UPDATE
-              </button>
-              <button
-                class="w-1/2 bg-gray-200 text-black font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
-                @click="$router.push('/profile/additional-details')"
-              >
-                Cancel
-              </button>
+            <div class="mt-8">
+              <div class="w-3/6 flex gap-4">
+                <button
+                  @click="updateProfile"
+                  class="w-1/2 bg-black text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                >
+                  SAVE & UPDATE
+                </button>
+                <button
+                  class="w-1/2 bg-gray-200 text-black font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  @click="$router.push('/profile/additional-details')"
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
         </div>

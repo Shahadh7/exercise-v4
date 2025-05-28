@@ -1,7 +1,9 @@
 <template>
   <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
-    <div class="col-span-12 flex gap-4 items-baseline">
-      <h2 class="text-3xl md:text-4xl font-light">Spouse <span class="font-bold">Details</span></h2>
+    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+      <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
+        Spouse <span class="font-bold">Details</span>
+      </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
         <router-link to="/profile/spouse-details/edit">Edit Spouse Details</router-link>
       </button>
@@ -11,7 +13,7 @@
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
             <div :class="spouseDetails.salutation ? 'mb-3' : 'mb-10'">
-              <p class="mb-2 font-bold">Home address</p>
+              <p class="mb-2 font-bold">Salutation</p>
               <p>{{ spouseDetails.salutation }}</p>
             </div>
             <div :class="spouseDetails.firstName ? 'mb-3' : 'mb-10'">

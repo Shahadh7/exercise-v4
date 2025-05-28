@@ -1,7 +1,7 @@
 <template>
   <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
-    <div class="col-span-12 flex gap-4 items-baseline">
-      <h2 class="text-3xl md:text-4xl font-light">
+    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+      <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Personal <span class="font-bold">Preferences</span>
       </h2>
       <button class="underline text-pink-800 hover:text-blue-900">

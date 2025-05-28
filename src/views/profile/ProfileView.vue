@@ -1,9 +1,11 @@
 <template>
   <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
-    <div class="col-span-12 flex gap-4 items-baseline">
-      <h2 class="text-3xl md:text-4xl font-light">My <span class="font-bold">Profile</span></h2>
+    <div class="col-span-12 block lg:flex gap-4 items-baseline">
+      <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
+        My <span class="font-bold">Profile</span>
+      </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/edit">Edit Profile</router-link>
+        <router-link to="/profile/basic-details/edit">Edit Profile</router-link>
       </button>
     </div>
     <div class="col-span-12 mt-5">
