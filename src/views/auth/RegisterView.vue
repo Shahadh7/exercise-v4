@@ -87,8 +87,9 @@
           <div class="col-span-2">
             <button
               type="submit"
-              class="w-2/5 bg-black text-white font-semibold py-2 rounded hover:bg-gray-800"
+              class="w-2/5 flex gap-3 items-center justify-center bg-black text-sm text-white font-semibold py-2 rounded hover:bg-gray-800"
             >
+              <Spinner class="inline" v-if="proccessing" />
               REGISTER
             </button>
           </div>
@@ -113,6 +114,7 @@ import { registerSchema } from '@/validations/validationSchemas'
 import axios from '@/axios'
 import { useRouter } from 'vue-router'
 import { showToast } from '@/stores/toast.js'
+import Spinner from '@/components/Spinner.vue'
 
 const formData = ref({
   user_id: '',
@@ -125,6 +127,7 @@ const errors = reactive({})
 const router = useRouter()
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
+const proccessing = ref(false)
 
 const togglePassword = () => {
   showPassword.value = !showPassword.value
@@ -135,6 +138,7 @@ const toggleConfirmPassword = () => {
 }
 
 const handleRegister = async () => {
+  proccessing.value = true
   Object.keys(errors).forEach((key) => delete errors[key])
 
   try {
@@ -163,5 +167,6 @@ const handleRegister = async () => {
       errors.message = err.response?.data?.message || 'Registration failed.'
     }
   }
+  proccessing.value = false
 }
 </script>

@@ -88,9 +88,10 @@
             <button
               @click="handleLogin"
               :disabled="loading"
-              class="w-2/5 bg-black text-white font-semibold py-2 rounded hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+              class="w-2/5 flex gap-3 text-sm items-center justify-center bg-black text-white font-semibold py-2 rounded hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
             >
-              {{ loading ? 'LOGGING IN...' : 'LOGIN' }}
+              <Spinner class="inline" v-if="proccessing" />
+              LOGIN
             </button>
           </div>
         </div>
@@ -124,6 +125,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'vue-router'
 import { loginSchema } from '@/validations/validationSchemas'
 import { showToast } from '@/stores/toast.js'
+import Spinner from '@/components/Spinner.vue'
 
 const router = useRouter()
 
@@ -134,6 +136,7 @@ const formData = ref({
 })
 
 const showPassword = ref(false)
+const proccessing = ref(false)
 
 const loading = ref(false)
 const error = ref(null)
@@ -178,8 +181,7 @@ const removeAuthToken = () => {
 }
 
 const handleLogin = async () => {
-  loading.value = true
-
+  proccessing.value = true
   Object.keys(formErrors).forEach((key) => delete formErrors[key])
 
   try {
@@ -212,7 +214,7 @@ const handleLogin = async () => {
       showToast(err.response?.data?.message || 'Login failed.', 'error')
     }
   } finally {
-    loading.value = false
+    proccessing.value = false
   }
 }
 
