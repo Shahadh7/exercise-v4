@@ -1,10 +1,10 @@
 <template>
-  <div class="main-bg">
-    <AuthenticatedMenu />
-    <div class="sm:px-4 flex flex-col min-h-screen">
+  <div class="main-bg" role="main" aria-label="Main Application Background">
+    <AuthenticatedMenu aria-label="Authenticated Navigation Menu" />
+    <div class="sm:px-4 flex flex-col min-h-screen" role="region" aria-label="Main Content Layout">
       <div class="grid grid-cols-12">
         <div class="col-span-12 lg:col-span-3 xl:col-span-2">
-          <SideBar class="h-full mt-20 lg:mt-34" />
+          <SideBar class="h-full mt-20 lg:mt-34" aria-label="Side Navigation Menu" />
         </div>
         <div class="col-span-12 lg:col-span-9 xl:col-span-10">
           <RouterView v-slot="{ Component }">

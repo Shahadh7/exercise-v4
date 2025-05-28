@@ -1,7 +1,11 @@
-<template id="GuestLayout">
-  <div class="main-bg">
-    <NavBar />
-    <div class="mx-auto sm:px-4flex flex-col items-center justify-center">
+<template>
+  <div class="main-bg" role="main" aria-label="Guest Layout Background">
+    <NavBar aria-label="Main Navigation Bar" />
+    <div
+      class="mx-auto sm:px-4flex flex-col items-center justify-center"
+      role="region"
+      aria-label="Guest Page Content"
+    >
       <RouterView v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />
