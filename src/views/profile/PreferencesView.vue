@@ -13,21 +13,25 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="preferences.hobbies ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.hobbies.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Hobbies and interests</p>
-              <p>{{ preferences.hobbies }}</p>
+              <p v-if="preferences.hobbies.length">{{ preferences.hobbies }}</p>
             </div>
-            <div :class="preferences.favorite_sports ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.favorite_sports.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Favourite sports</p>
-              <p>{{ preferences.favorite_sports }}</p>
+              <p v-if="preferences.favorite_sports.length">{{ preferences.favorite_sports }}</p>
             </div>
-            <div :class="preferences.preferred_music_genre ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.preferred_music_genre.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred music genres</p>
-              <p>{{ preferences.preferred_music_genre }}</p>
+              <p v-if="preferences.preferred_music_genre.length">
+                {{ preferences.preferred_music_genre }}
+              </p>
             </div>
             <div :class="preferences.preferred_movie_tv_show ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred movie/TV shows</p>
-              <p>{{ preferences.preferred_movie_tv_show }}</p>
+              <p v-if="preferences.preferred_movie_tv_show.length">
+                {{ preferences.preferred_movie_tv_show }}
+              </p>
             </div>
           </div>
         </div>

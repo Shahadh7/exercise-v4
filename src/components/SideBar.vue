@@ -1,6 +1,6 @@
 <template>
-  <nav class="text-black p-4">
-    <ul class="flex sm:flex-col sm:space-y-4 space-y-0 sm:space-x-8 sm:space-x-0 sm:w-56 w-full">
+  <nav class="text-black p-4 h-auto">
+    <ul class="flex lg:flex-col lg:space-y-4 space-y-0 lg:w-56 w-full">
       <li
         v-for="(tab, index) in tabs"
         :key="index"

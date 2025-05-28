@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Profile</span>
@@ -12,7 +12,7 @@
     <div class="col-span-12 mt-5">
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-12 sm:col-span-2 flex flex-col items-center">
+          <div class="col-span-12 lg:col-span-2 flex flex-col items-center">
             <div
               class="w-28 h-28 overflow-hidden mb-4 hover:cursor-pointer"
               @click="triggerFileInput"
@@ -42,13 +42,13 @@
               class="hidden"
             />
           </div>
-          <div class="col-span-12 sm:col-span-10 ps-10">
+          <div class="col-span-12 lg:col-span-10 ps-10">
             <div class="mb-4">
               <label for="salutation" class="block mb-2 font-bold"
                 >Salutation <span class="text-red-600">*</span></label
               >
               <select
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 v-model="basicProfileDetails.salutation"
                 id="salutation"
                 name="salutation"
@@ -66,7 +66,7 @@
               <input
                 type="text"
                 v-model="basicProfileDetails.firstName"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter First Name"
                 id="first-name"
                 name="first-name"
@@ -80,7 +80,7 @@
               <input
                 type="text"
                 v-model="basicProfileDetails.lastName"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Last Name"
                 id="last-name"
                 name="last-name"
@@ -94,7 +94,7 @@
               <input
                 type="email"
                 v-model="basicProfileDetails.email"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Email Address"
                 id="email"
                 name="email"
@@ -104,17 +104,17 @@
           </div>
         </div>
         <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-12 sm:col-span-2"></div>
-          <div class="col-span-12 sm:col-span-10 ps-10 mt-4">
-            <div class="w-3/6 flex gap-4">
+          <div class="col-span-12 lg:col-span-2"></div>
+          <div class="col-span-12 lg:col-span-10 ps-10 mt-4">
+            <div class="w-full lg:w-3/6 flex gap-4">
               <button
                 @click="updateProfile"
-                class="w-1/2 bg-black text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                class="w-1/2 bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
               >
                 SAVE & UPDATE
               </button>
               <button
-                class="w-1/2 bg-gray-200 text-black font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 @click="$router.push('/profile/basic')"
               >
                 Cancel
