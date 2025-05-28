@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Spouse Details</span>
@@ -16,7 +16,7 @@
             <div class="mb-4">
               <label for="salutation" class="block mb-2 font-bold">Salutation</label>
               <select
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 v-model="spouseDetails.salutation"
                 id="salutation"
                 name="salutation"
@@ -32,7 +32,7 @@
               <input
                 type="text"
                 v-model="spouseDetails.firstName"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter First Name"
                 id="firstName"
                 name="firstName"
@@ -46,7 +46,7 @@
               <input
                 type="text"
                 v-model="spouseDetails.lastName"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter last Name"
                 id="lastName"
                 name="lastName"
@@ -56,20 +56,19 @@
               </p>
             </div>
             <div class="mt-8">
-              <div class="w-3/6 flex gap-4">
+              <div class="w-full lg:w-3/6 flex gap-4">
                 <button
                   @click="updateSpouseDetails"
-                  class="w-1/2 bg-black text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 bg-black text-white text-sm font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 >
                   SAVE & UPDATE
                 </button>
                 <button
-                  class="w-1/2 bg-gray-200 text-black font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 bg-gray-200 text-black text-sm font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/spouse-details')"
                 >
                   Cancel
                 </button>
-                {{ formErrors }}
               </div>
             </div>
           </div>
@@ -141,7 +140,7 @@ const updateSpouseDetails = async () => {
         formErrors.value[key] = serverErrors[key][0]
       }
     } else {
-      formErrors.value.message = err.response?.data?.message || 'Login failed.'
+      showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
 }

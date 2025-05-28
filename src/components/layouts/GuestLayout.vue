@@ -1,7 +1,7 @@
 <template id="GuestLayout">
   <div class="main-bg">
     <NavBar />
-    <div class="container mx-auto sm:px-4 flex flex-col items-center justify-center min-h-screen">
+    <div class="mx-auto sm:px-4flex flex-col items-center justify-center">
       <RouterView v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />

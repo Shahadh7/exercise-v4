@@ -31,10 +31,5 @@ export const additionalDetailsSchema = yup.object({
   homeAddress: yup.string().required('Home address is required'),
   country: yup.string().required('Country is required'),
   postalCode: yup.string().required('Postal code is required'),
-  dob: yup
-    .date()
-    .nullable()
-    .notRequired()
-    .max(maxDate, 'You must be at least 17 years old')
-    .typeError('Invalid date format'),
+  dob: yup.date().nullable().notRequired().max(maxDate, 'You must be at least 17 years old'),
 })

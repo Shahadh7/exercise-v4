@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-cover bg-center">
-    <div class="px-10 py-20 rounded-2xl backdrop-blur-md shadow-lg text-black">
+  <div class="min-h-screen mx-4 sm:mx-0 flex items-center justify-center bg-cover bg-center">
+    <div class="backdrop-blur-xl px-10 py-20 rounded-2xl shadow-lg text-black bg-white/10">
       <h1 class="text-4xl sm:text-5xl font-light mb-14 text-center mx-4">
         Welcome to <span class="font-bold">myApp</span>
         <hr class="w-20 sm:w-40 my-5 mx-auto border-2" />

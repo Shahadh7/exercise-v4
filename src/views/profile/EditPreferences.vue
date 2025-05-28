@@ -73,7 +73,7 @@
                 </button>
                 <button
                   class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
-                  @click="$router.push('/profile/basic')"
+                  @click="$router.push('/profile/personal-preferences')"
                 >
                   Cancel
                 </button>
@@ -145,7 +145,7 @@ const updatePreferences = async () => {
         formErrors.value[key] = serverErrors[key][0]
       }
     } else {
-      formErrors.value.message = err.response?.data?.message || 'Login failed.'
+      showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
 }

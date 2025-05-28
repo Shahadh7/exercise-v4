@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4 mb-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Profile</span>
@@ -21,7 +21,7 @@
                 v-if="imageAvailable"
                 :src="imageFile"
                 alt="Profile Image"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover rounded-full"
               />
               <div v-else>
                 <font-awesome-icon icon="fa-solid fa-user" class="text-gray-400 text-9xl" />
@@ -117,7 +117,7 @@
                 class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 @click="$router.push('/profile/basic')"
               >
-                Cancel
+                CANCEL
               </button>
             </div>
           </div>
@@ -241,7 +241,7 @@ const updateProfile = async () => {
         formErrors.value[key] = serverErrors[key][0]
       }
     } else {
-      formErrors.value.message = err.response?.data?.message || 'Login failed.'
+      showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
 }

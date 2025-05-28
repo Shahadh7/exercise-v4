@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         My <span class="font-bold">Profile</span>
@@ -26,21 +26,21 @@
             </div>
           </div>
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="basicProfileDetails.salutation ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Salutation <span class="text-red-600">*</span></p>
-              <p>{{ basicProfileDetails.salutation }}</p>
+              <p>{{ basicProfileDetails.salutation || 'N/A' }}</p>
             </div>
-            <div :class="basicProfileDetails.firstName ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">First name <span class="text-red-600">*</span></p>
-              <p>{{ basicProfileDetails.firstName }}</p>
+              <p>{{ basicProfileDetails.firstName || 'N/A' }}</p>
             </div>
-            <div :class="basicProfileDetails.lastName ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Last name <span class="text-red-600">*</span></p>
-              <p>{{ basicProfileDetails.lastName }}</p>
+              <p>{{ basicProfileDetails.lastName || 'N/A' }}</p>
             </div>
-            <div :class="basicProfileDetails.email ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Email address <span class="text-red-600">*</span></p>
-              <p>{{ basicProfileDetails.email }}.</p>
+              <p>{{ basicProfileDetails.email || 'N/A' }}.</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ const fetchProfileDetails = async () => {
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
-      console.error('Profile details not found: Please create a profile first.')
+      console.error('Profile details not found: Please add basic details.')
     } else {
       console.error('Error fetching profile details:', err)
     }

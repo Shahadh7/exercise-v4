@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4 mb-4">
     <div class="col-span-12 gap-4 items-baseline block lg:flex">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Additional <span class="font-bold">Details</span>
@@ -13,29 +13,29 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="additionalDetails.homeAddress ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Home address <span class="text-red-600">*</span></p>
-              <p>{{ additionalDetails.homeAddress }}</p>
+              <p>{{ additionalDetails.homeAddress || 'N/A' }}</p>
             </div>
-            <div :class="additionalDetails.country ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Country <span class="text-red-600">*</span></p>
-              <p>{{ additionalDetails.country }}</p>
+              <p>{{ additionalDetails.country || 'N/A' }}</p>
             </div>
-            <div :class="additionalDetails.postalCode ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Postal code <span class="text-red-600">*</span></p>
-              <p>{{ additionalDetails.postalCode }}</p>
+              <p>{{ additionalDetails.postalCode || 'N/A' }}</p>
             </div>
-            <div :class="additionalDetails.dob ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Date of birth</p>
-              <p>{{ additionalDetails.dob }}</p>
+              <p>{{ additionalDetails.dob || 'N/A' }}</p>
             </div>
-            <div :class="additionalDetails.gender ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Gender</p>
-              <p>{{ additionalDetails.gender }}</p>
+              <p>{{ additionalDetails.gender || 'N/A' }}</p>
             </div>
-            <div :class="additionalDetails.maritalStatus ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Marital status</p>
-              <p>{{ additionalDetails.maritalStatus }}</p>
+              <p>{{ additionalDetails.maritalStatus || 'N/A' }}</p>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@ const fetchAdditionalDetails = async () => {
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
-      console.error('Additional details not found: Please create a additional first.')
+      console.error('Additional details not found: Please add additional details.')
     } else {
       console.error('Error fetching additional details:', err)
     }

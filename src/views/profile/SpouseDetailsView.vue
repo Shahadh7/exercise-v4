@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Spouse <span class="font-bold">Details</span>
@@ -13,17 +13,17 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="spouseDetails.salutation ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Salutation</p>
-              <p>{{ spouseDetails.salutation }}</p>
+              <p>{{ spouseDetails.salutation || 'N/A' }}</p>
             </div>
-            <div :class="spouseDetails.firstName ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">First name</p>
-              <p>{{ spouseDetails.firstName }}</p>
+              <p>{{ spouseDetails.firstName || 'N/A' }}</p>
             </div>
-            <div :class="spouseDetails.lastName ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Last name</p>
-              <p>{{ spouseDetails.lastName }}</p>
+              <p>{{ spouseDetails.lastName || 'N/A' }}</p>
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@ const fetchSpouseDetails = async () => {
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
-      console.error('Spouse details not found: Please create a spouse first.')
+      console.error('Spouse details not found: Please add spouse details.')
     } else {
       console.error('Error fetching spouse details:', err)
     }

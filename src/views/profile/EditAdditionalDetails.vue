@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4 mb-4">
     <div class="col-span-12 gap-4 items-baseline block lg:flex">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Edit <span class="font-bold">Additional Details</span>
@@ -12,7 +12,7 @@
     <div class="col-span-12 mt-5">
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
-          <div class="col-span-12 sm:col-span-10 ps-10">
+          <div class="col-span-12 sm:col-span-10">
             <div class="mb-4">
               <label for="homeAddress" class="block mb-2 font-bold"
                 >Home address <span class="text-red-600">*</span></label
@@ -20,7 +20,7 @@
               <input
                 type="text"
                 v-model="additionalDetails.homeAddress"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Home Address"
                 id="homeAddress"
                 name="homeAddress"
@@ -36,7 +36,7 @@
               <input
                 type="text"
                 v-model="additionalDetails.country"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Country"
                 id="country"
                 name="country"
@@ -50,7 +50,7 @@
               <input
                 type="text"
                 v-model="additionalDetails.postalCode"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Postal Code"
                 id="postal-code"
                 name="postal-code"
@@ -64,7 +64,7 @@
               <input
                 type="date"
                 v-model="additionalDetails.dob"
-                class="w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                class="w-full lg:w-3/6 px-3 py-2 rounded-xl bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="Enter Date of Birth"
                 id="dob"
                 name="dob"
@@ -119,20 +119,22 @@
               </div>
             </div>
             <div class="mt-8">
-              <div class="w-3/6 flex gap-4">
+              <div class="w-full lg:w-3/6 flex gap-4">
                 <button
                   @click="updateProfile"
-                  class="w-1/2 bg-black text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 bg-black text-white text-xs font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 >
                   SAVE & UPDATE
                 </button>
                 <button
-                  class="w-1/2 bg-gray-200 text-black font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 bg-gray-200 text-black text-xs font-semibold hover:cursor-pointer py-2 rounded hover:bg-gray-300 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                   @click="$router.push('/profile/additional-details')"
                 >
-                  Cancel
+                  CANCEL
                 </button>
               </div>
+
+              {{ additionalDetails }}
             </div>
           </div>
         </div>
@@ -152,12 +154,12 @@ const router = useRouter()
 const userStore = useUserStore()
 
 const additionalDetails = ref({
-  homeAddress: '',
-  country: '',
-  postalCode: '',
-  dob: '',
-  gender: '',
-  maritalStatus: '',
+  homeAddress: null,
+  country: null,
+  postalCode: null,
+  dob: null,
+  gender: null,
+  maritalStatus: null,
 })
 
 const maritalStatusOptions = computed(() => [
@@ -225,7 +227,7 @@ const updateProfile = async () => {
         formErrors.value[key] = serverErrors[key][0]
       }
     } else {
-      formErrors.value.message = err.response?.data?.message || 'Login failed.'
+      showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
 }

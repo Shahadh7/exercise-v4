@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-12 mt-5 sm:mt-28 mx-4">
+  <div class="grid grid-cols-12 mt-5 lg:mt-28 mx-4">
     <div class="col-span-12 block lg:flex gap-4 items-baseline">
       <h2 class="text-3xl md:text-4xl mb-3 lg:mb-0 font-light">
         Personal <span class="font-bold">Preferences</span>
@@ -13,45 +13,65 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="preferences.hobbies.length ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Hobbies and interests</p>
-              <Chip
-                v-for="(hobby, index) in preferences.hobbies"
-                :key="index"
-                :label="hobby"
-                class="mb-2 me-2"
-                chipClass="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm"
-              />
+              <template v-if="preferences.hobbies.length !== 0">
+                <Chip
+                  v-for="(hobby, index) in preferences.hobbies"
+                  :key="index"
+                  :label="hobby"
+                  class="mb-2 me-2"
+                  chipClass="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm"
+                />
+              </template>
+              <template v-else>
+                <p class="text-gray-500">No hobbies or interests added yet.</p>
+              </template>
             </div>
-            <div :class="preferences.favorite_sports.length ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Favourite sports</p>
-              <Chip
-                v-for="(sport, index) in preferences.favorite_sports"
-                :key="index"
-                :label="sport"
-                class="mb-2 me-2"
-                chipClass="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm"
-              />
+              <template v-if="preferences.favorite_sports.length !== 0">
+                <Chip
+                  v-for="(sport, index) in preferences.favorite_sports"
+                  :key="index"
+                  :label="sport"
+                  class="mb-2 me-2"
+                  chipClass="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm"
+                />
+              </template>
+              <template v-else>
+                <p class="text-gray-500">No favorite sports added yet.</p>
+              </template>
             </div>
-            <div :class="preferences.preferred_music_genre.length ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Preferred music genres</p>
-              <Chip
-                v-for="(genre, index) in preferences.preferred_music_genre"
-                :key="index"
-                :label="genre"
-                class="mb-2 me-2"
-                chipClass="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm"
-              />
+              <template v-if="preferences.preferred_music_genre.length !== 0">
+                <Chip
+                  v-for="(genre, index) in preferences.preferred_music_genre"
+                  :key="index"
+                  :label="genre"
+                  class="mb-2 me-2"
+                  chipClass="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm"
+                />
+              </template>
+              <template v-else>
+                <p class="text-gray-500">No preferred music genres added yet.</p>
+              </template>
             </div>
-            <div :class="preferences.preferred_movie_tv_show.length ? 'mb-3' : 'mb-10'">
+            <div class="mb-3">
               <p class="mb-2 font-bold">Preferred movie/TV shows</p>
-              <Chip
-                v-for="(show, index) in preferences.preferred_movie_tv_show"
-                :key="index"
-                :label="show"
-                class="mb-2 me-2"
-                chipClass="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-sm"
-              />
+              <template v-if="preferences.preferred_movie_tv_show.length !== 0">
+                <Chip
+                  v-for="(show, index) in preferences.preferred_movie_tv_show"
+                  :key="index"
+                  :label="show"
+                  class="mb-2 me-2"
+                  chipClass="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-sm"
+                />
+              </template>
+              <template v-else>
+                <p class="text-gray-500">No preferred movie/TV shows added yet.</p>
+              </template>
             </div>
           </div>
         </div>
@@ -86,7 +106,7 @@ const fetchPreferences = async () => {
     }
   } catch (err) {
     if (err.response && err.response.status === 404) {
-      console.error('Preferences details not found: Please create a preferences first.')
+      console.error('Preferences details not found: Please add preferences.')
     } else {
       console.error('Error fetching preferences details:', err)
     }
