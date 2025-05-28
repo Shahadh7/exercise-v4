@@ -5,7 +5,7 @@
         Personal <span class="font-bold">Preferences</span>
       </h2>
       <button class="underline text-pink-800 hover:text-blue-900">
-        <router-link to="/profile/personal-preferences/edit">Edit Spouse Details</router-link>
+        <router-link to="/profile/personal-preferences/edit">Edit Presonal Preferences</router-link>
         <font-awesome-icon icon="fa-solid fa-pencil" class="ms-2" />
       </button>
     </div>
@@ -13,25 +13,45 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="preferences.hobbies.length ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.hobbies ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Hobbies and interests</p>
-              <p v-if="preferences.hobbies.length">{{ preferences.hobbies }}</p>
+              <Chip
+                v-for="(hobby, index) in preferences.hobbies"
+                :key="index"
+                :label="hobby"
+                class="mb-2 me-2"
+                chipClass="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm"
+              />
             </div>
-            <div :class="preferences.favorite_sports.length ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.favorite_sports ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Favourite sports</p>
-              <p v-if="preferences.favorite_sports.length">{{ preferences.favorite_sports }}</p>
+              <Chip
+                v-for="(sport, index) in preferences.favorite_sports"
+                :key="index"
+                :label="sport"
+                class="mb-2 me-2"
+                chipClass="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm"
+              />
             </div>
-            <div :class="preferences.preferred_music_genre.length ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.preferred_music_genre ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred music genres</p>
-              <p v-if="preferences.preferred_music_genre.length">
-                {{ preferences.preferred_music_genre }}
-              </p>
+              <Chip
+                v-for="(genre, index) in preferences.preferred_music_genre"
+                :key="index"
+                :label="genre"
+                class="mb-2 me-2"
+                chipClass="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm"
+              />
             </div>
             <div :class="preferences.preferred_movie_tv_show ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred movie/TV shows</p>
-              <p v-if="preferences.preferred_movie_tv_show.length">
-                {{ preferences.preferred_movie_tv_show }}
-              </p>
+              <Chip
+                v-for="(show, index) in preferences.preferred_movie_tv_show"
+                :key="index"
+                :label="show"
+                class="mb-2 me-2"
+                chipClass="bg-yellow-100 text-yellow-800 px-4 py-1 rounded-full text-sm"
+              />
             </div>
           </div>
         </div>
@@ -42,6 +62,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
+import Chip from '@/components/Chip.vue'
 
 const preferences = ref({
   hobbies: [],
@@ -57,10 +78,10 @@ const fetchPreferences = async () => {
     const response = await axios.get('/api/preferences')
     if (response.data) {
       preferences.value = {
-        hobbies: response.data.hobbies,
-        favoriteSports: response.data.favorite_sports,
-        preferredMusicGenre: response.data.preferred_music_genre,
-        preferredMovieTvShow: response.data.preferred_movie_tv_show,
+        hobbies: response.data.hobbies || [],
+        favorite_sports: response.data.favorite_sports || [],
+        preferred_music_genre: response.data.preferred_music_genre || [],
+        preferred_movie_tv_show: response.data.preferred_movie_tv_show || [],
       }
     }
   } catch (err) {
