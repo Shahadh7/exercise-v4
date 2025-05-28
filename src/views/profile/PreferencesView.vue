@@ -13,7 +13,7 @@
       <div class="backdrop-blur-md drop-shadow-2xl shadow-md rounded-lg p-6 mt-4">
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-12 sm:col-span-10 ps-10">
-            <div :class="preferences.hobbies ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.hobbies.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Hobbies and interests</p>
               <Chip
                 v-for="(hobby, index) in preferences.hobbies"
@@ -23,7 +23,7 @@
                 chipClass="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-sm"
               />
             </div>
-            <div :class="preferences.favorite_sports ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.favorite_sports.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Favourite sports</p>
               <Chip
                 v-for="(sport, index) in preferences.favorite_sports"
@@ -33,7 +33,7 @@
                 chipClass="bg-green-100 text-green-800 px-4 py-1 rounded-full text-sm"
               />
             </div>
-            <div :class="preferences.preferred_music_genre ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.preferred_music_genre.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred music genres</p>
               <Chip
                 v-for="(genre, index) in preferences.preferred_music_genre"
@@ -43,7 +43,7 @@
                 chipClass="bg-purple-100 text-purple-800 px-4 py-1 rounded-full text-sm"
               />
             </div>
-            <div :class="preferences.preferred_movie_tv_show ? 'mb-3' : 'mb-10'">
+            <div :class="preferences.preferred_movie_tv_show.length ? 'mb-3' : 'mb-10'">
               <p class="mb-2 font-bold">Preferred movie/TV shows</p>
               <Chip
                 v-for="(show, index) in preferences.preferred_movie_tv_show"

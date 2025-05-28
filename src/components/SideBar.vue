@@ -65,7 +65,7 @@ const tabs = computed(() => {
 const fetchMaritalStatus = async () => {
   try {
     const response = await axios.get('/api/user/is-married')
-    isMarried.value = response.data.is_married
+    userStore.isMarried = response.data.is_married
   } catch (error) {
     console.error('Error fetching marital status:', error)
   }
