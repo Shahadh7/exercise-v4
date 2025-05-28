@@ -146,8 +146,10 @@ import axios from '@/axios'
 import { showToast } from '@/stores/toast'
 import { additionalDetailsSchema } from '@/validations/validationSchemas'
 import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
+const userStore = useUserStore()
 
 const additionalDetails = ref({
   homeAddress: '',
@@ -205,6 +207,11 @@ const updateProfile = async () => {
       marital_status: additionalDetails.value.maritalStatus,
     })
     showToast(response.data.message, 'success')
+    if (additionalDetails.value.maritalStatus === 'Married') {
+      userStore.isMarried = true
+    } else {
+      userStore.isMarried = false
+    }
     router.push('/profile/additional-details')
   } catch (err) {
     console.error('Error updating profile:', err)

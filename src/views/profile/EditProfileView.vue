@@ -131,6 +131,9 @@ import { onMounted, ref } from 'vue'
 import axios from '@/axios'
 import { showToast } from '@/stores/toast'
 import { basicDetailsSchema } from '@/validations/validationSchemas'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const basicProfileDetails = ref({
   salutation: '',
@@ -143,7 +146,6 @@ const salutationOptions = ref([
   { value: 'Mr.', text: 'Mr.' },
   { value: 'Ms.', text: 'Ms.' },
   { value: 'Mrs.', text: 'Mrs.' },
-  { value: 'Dr.', text: 'Dr.' },
 ])
 
 const imageAvailable = ref(false)
@@ -205,6 +207,7 @@ const handleImageUpload = (event) => {
 }
 
 const updateProfile = async () => {
+  formErrors.value = {}
   try {
     await basicDetailsSchema.validate(basicProfileDetails.value, { abortEarly: false })
 
@@ -222,6 +225,7 @@ const updateProfile = async () => {
       }
     }
     showToast(response.data.message, 'success')
+    router.push('/profile/basic')
   } catch (err) {
     console.error('Error updating profile:', err)
     if (err.name === 'ValidationError') {

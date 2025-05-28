@@ -16,11 +16,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import axios from '@/axios'
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
 const route = useRoute()
+const isMarried = ref(false)
+const userStore = useUserStore()
 
 const isActiveClass = (path) => {
   return route.path.startsWith(path)
@@ -28,28 +32,48 @@ const isActiveClass = (path) => {
     : 'text-gray-600'
 }
 
-const tabs = [
-  {
-    name: 'Basic Details',
-    icon: 'fa-solid fa-user',
-    path: '/profile/basic-details',
-  },
-  {
-    name: 'Additional Details',
-    icon: 'fa-solid fa-info-circle',
-    path: '/profile/additional-details',
-  },
-  {
-    name: 'Spouse Details',
-    icon: 'fa-solid fa-heart',
-    path: '/profile/spouse-details',
-  },
-  {
-    name: 'Personal Preferences',
-    icon: 'fa-solid fa-cog',
-    path: '/profile/personal-preferences',
-  },
-]
+const tabs = computed(() => {
+  const baseTabs = [
+    {
+      name: 'Basic Details',
+      icon: 'fa-solid fa-user',
+      path: '/profile/basic-details',
+    },
+    {
+      name: 'Additional Details',
+      icon: 'fa-solid fa-info-circle',
+      path: '/profile/additional-details',
+    },
+    {
+      name: 'Personal Preferences',
+      icon: 'fa-solid fa-cog',
+      path: '/profile/personal-preferences',
+    },
+  ]
+
+  if (userStore.isMarried) {
+    baseTabs.splice(2, 0, {
+      name: 'Spouse Details',
+      icon: 'fa-solid fa-heart',
+      path: '/profile/spouse-details',
+    })
+  }
+
+  return baseTabs
+})
+
+const fetchMaritalStatus = async () => {
+  try {
+    const response = await axios.get('/api/user/is-married')
+    isMarried.value = response.data.is_married
+  } catch (error) {
+    console.error('Error fetching marital status:', error)
+  }
+}
+
+onMounted(() => {
+  fetchMaritalStatus()
+})
 
 const navigateTo = (tab) => {
   router.push(tab.path)
