@@ -18,7 +18,7 @@
               <AddToArrayInput
                 name="hobbies"
                 v-model="preferences.hobbies"
-                placeholder="Type and press enter"
+                placeholder="Type and press enter or click + button"
                 width="w-full lg:w-3/6"
                 @update:model-value="preferences.hobbies = $event"
               />
@@ -29,7 +29,7 @@
               <AddToArrayInput
                 name="sports"
                 v-model="preferences.favouriteSports"
-                placeholder="Type and press enter"
+                placeholder="Type and press enter or click + button"
                 width="w-full lg:w-3/6"
                 @update:model-value="preferences.favouriteSports = $event"
               />
@@ -42,7 +42,7 @@
               <AddToArrayInput
                 name="music-pref"
                 v-model="preferences.preferredMusicGenre"
-                placeholder="Type and press enter"
+                placeholder="Type and press enter or click + button"
                 width="w-full lg:w-3/6"
                 @update:model-value="preferences.preferredMusicGenre = $event"
               />
@@ -55,7 +55,7 @@
               <AddToArrayInput
                 name="show-pref"
                 v-model="preferences.preferredMoviesTv"
-                placeholder="Type and press enter"
+                placeholder="Type and press enter or click + button"
                 width="w-full lg:w-3/6"
                 @update:model-value="preferences.preferredMoviesTv = $event"
               />
@@ -67,8 +67,9 @@
               <div class="w-full lg:w-3/6 flex gap-4">
                 <button
                   @click="updatePreferences"
-                  class="w-1/2 bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 flex gap-3 items-center justify-center bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 >
+                  <Spinner class="inline" v-if="proccessing" />
                   SAVE & UPDATE
                 </button>
                 <button
@@ -91,6 +92,7 @@ import axios from '@/axios'
 import { showToast } from '@/stores/toast'
 import { useRouter } from 'vue-router'
 import AddToArrayInput from '@/components/AddToArrayInput.vue'
+import Spinner from '@/components/Spinner.vue'
 
 const router = useRouter()
 
@@ -102,6 +104,7 @@ const preferences = ref({
 })
 
 const formErrors = ref({})
+const proccessing = ref(false)
 
 const fetchPreferences = async () => {
   try {
@@ -127,6 +130,7 @@ const fetchPreferences = async () => {
 
 const updatePreferences = async () => {
   formErrors.value = {}
+  proccessing.value = true
   try {
     await axios.get('/sanctum/csrf-cookie')
 
@@ -148,6 +152,7 @@ const updatePreferences = async () => {
       showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
+  proccessing.value = false
 }
 
 onMounted(() => {

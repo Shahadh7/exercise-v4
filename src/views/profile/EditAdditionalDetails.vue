@@ -122,8 +122,9 @@
               <div class="w-full lg:w-3/6 flex gap-4">
                 <button
                   @click="updateProfile"
-                  class="w-1/2 bg-black text-white text-xs font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 flex gap-3 items-center justify-center bg-black text-white text-xs font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 >
+                  <Spinner class="inline" v-if="proccessing" />
                   SAVE & UPDATE
                 </button>
                 <button
@@ -147,6 +148,7 @@ import { showToast } from '@/stores/toast'
 import { additionalDetailsSchema } from '@/validations/validationSchemas'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
+import Spinner from '@/components/Spinner.vue'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -166,6 +168,7 @@ const maritalStatusOptions = computed(() => [
 ])
 
 const formErrors = ref({})
+const proccessing = ref(false)
 
 const fetchAdditionalDetails = async () => {
   try {
@@ -193,6 +196,7 @@ const fetchAdditionalDetails = async () => {
 
 const updateProfile = async () => {
   formErrors.value = {}
+  proccessing.value = true
   try {
     await additionalDetailsSchema.validate(additionalDetails.value, { abortEarly: false })
 
@@ -227,6 +231,7 @@ const updateProfile = async () => {
       showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
+  proccessing.value = false
 }
 
 onMounted(() => {

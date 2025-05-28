@@ -18,7 +18,7 @@
                 v-if="imageAvailable"
                 :src="imageFile"
                 alt="Profile Image"
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover rounded-full"
               />
               <div v-else>
                 <font-awesome-icon icon="fa-solid fa-user" class="text-gray-400 text-9xl" />
@@ -52,6 +52,7 @@
 import { onMounted, ref } from 'vue'
 import axios from '@/axios'
 import { showToast } from '@/stores/toast'
+import Spinner from '@/components/Spinner.vue'
 
 const basicProfileDetails = ref({
   salutation: '',

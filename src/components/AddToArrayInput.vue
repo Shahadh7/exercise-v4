@@ -9,6 +9,13 @@
       :class="width"
       :name="name"
     />
+    <button
+      type="button"
+      @click="addItem"
+      class="px-4 py-2 ms-2 bg-black text-white rounded-xl hover:bg-gray-800"
+    >
+      +
+    </button>
 
     <div v-if="items.length" class="mt-3 flex flex-wrap gap-2">
       <span

@@ -59,8 +59,9 @@
               <div class="w-full lg:w-3/6 flex gap-4">
                 <button
                   @click="updateSpouseDetails"
-                  class="w-1/2 bg-black text-white text-sm font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                  class="w-1/2 flex gap-3 items-center justify-center bg-black text-white text-sm font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
                 >
+                  <Spinner class="inline" v-if="proccessing" />
                   SAVE & UPDATE
                 </button>
                 <button
@@ -82,6 +83,7 @@ import { onMounted, ref, computed } from 'vue'
 import axios from '@/axios'
 import { showToast } from '@/stores/toast'
 import { useRouter } from 'vue-router'
+import Spinner from '@/components/Spinner.vue'
 
 const router = useRouter()
 
@@ -98,6 +100,7 @@ const salutationOptions = ref([
 ])
 
 const formErrors = ref({})
+const proccessing = ref(false)
 
 const fetchSpouseDetails = async () => {
   try {
@@ -122,6 +125,7 @@ const fetchSpouseDetails = async () => {
 
 const updateSpouseDetails = async () => {
   formErrors.value = {}
+  proccessing.value = true
   try {
     await axios.get('/sanctum/csrf-cookie')
 
@@ -142,6 +146,7 @@ const updateSpouseDetails = async () => {
       showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
+  proccessing.value = false
 }
 
 onMounted(() => {

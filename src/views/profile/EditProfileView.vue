@@ -99,7 +99,9 @@
                 id="email"
                 name="email"
               />
-              <p class="text-red-500 m-0" v-if="formErrors.email">{{ formErrors.email }}</p>
+              <p class="text-red-500 m-0" v-if="formErrors.email || formErrors.email_address">
+                {{ formErrors.email || formErrors.email_address }}
+              </p>
             </div>
           </div>
         </div>
@@ -109,8 +111,9 @@
             <div class="w-full lg:w-3/6 flex gap-4">
               <button
                 @click="updateProfile"
-                class="w-1/2 bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
+                class="w-1/2 flex gap-3 items-center justify-center bg-black text-xs text-white font-semibold py-2 rounded hover:cursor-pointer hover:bg-gray-800 disabled:bg-gray-500 disabled:cursor-not-allowed transition-colors"
               >
+                <Spinner class="inline" v-if="proccessing" />
                 SAVE & UPDATE
               </button>
               <button
@@ -132,6 +135,7 @@ import axios from '@/axios'
 import { showToast } from '@/stores/toast'
 import { basicDetailsSchema } from '@/validations/validationSchemas'
 import { useRouter } from 'vue-router'
+import Spinner from '@/components/Spinner.vue'
 
 const router = useRouter()
 
@@ -152,6 +156,7 @@ const imageAvailable = ref(false)
 const imageFile = ref(null)
 const formErrors = ref({})
 const fileInput = ref(null)
+const proccessing = ref(false)
 
 const fetchProfileDetails = async () => {
   try {
@@ -209,6 +214,7 @@ const handleImageUpload = (event) => {
 
 const updateProfile = async () => {
   formErrors.value = {}
+  proccessing.value = true
   try {
     await basicDetailsSchema.validate(basicProfileDetails.value, { abortEarly: false })
 
@@ -241,6 +247,7 @@ const updateProfile = async () => {
       showToast(err.response?.data?.message || 'Update failed.', 'error')
     }
   }
+  proccessing.value = false
 }
 
 const uploadProfileImage = async () => {
