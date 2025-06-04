@@ -126,7 +126,6 @@ router.beforeEach(async (to, from, next) => {
     }
   } catch (err) {
     Cookies.remove('auth_token')
-    Cookies.remove('user_data')
     delete axios.defaults.headers.common['Authorization']
 
     if (err.response?.status === 401 || err.response?.status === 403) {

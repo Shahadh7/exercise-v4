@@ -176,7 +176,6 @@ const verifyToken = async () => {
 
 const removeAuthToken = () => {
   Cookies.remove('auth_token')
-  Cookies.remove('user_data')
   delete axios.defaults.headers.common['Authorization']
 }
 
