@@ -181,7 +181,7 @@ const removeAuthToken = () => {
 
 const handleLogin = async () => {
   proccessing.value = true
-  Object.keys(formErrors).forEach((key) => delete formErrors[key])
+  Object.keys(formErrors.value).forEach((key) => delete formErrors.value[key])
 
   try {
     await loginSchema.validate(formData.value, { abortEarly: false })
@@ -202,12 +202,12 @@ const handleLogin = async () => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       err.inner.forEach((e) => {
-        formErrors[e.path] = e.message
+        formErrors.value[e.path] = e.message
       })
     } else if (err.response?.data?.errors) {
       const serverErrors = err.response.data.errors
       for (const key in serverErrors) {
-        formErrors[key] = serverErrors[key][0]
+        formErrors.value[key] = serverErrors[key][0]
       }
     } else {
       showToast(err.response?.data?.message || 'Login failed.', 'error')
